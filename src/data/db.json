@@ -1,0 +1,19 @@
+{
+    "usuarios": [
+      {
+        "id": "1",
+        "nome": "principal",
+        "email": "principal@gmail.com",
+        "senha": "1234",
+        "tipo": "Administrador"
+      }
+    ],
+    "produtos": [
+        {
+            "id": "1",
+            "nome": "Arroz",
+            "categoria": "Perecível",
+            "preco": "27,98"
+        }
+    ]
+  }
