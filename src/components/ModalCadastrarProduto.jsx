@@ -1,58 +1,26 @@
-// rafce
 import React from 'react'
 import { useState } from 'react';
+
+//Importando o Modal
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/esm/Container';
 
 //Importando o Form
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/esm/Container';
-
-//Importando o Alerta
-import Alert from 'react-bootstrap/Alert';
-
-//Importando o Botão
-import Button from 'react-bootstrap/Button';
-
-//Importando o NavLink
-import Nav from 'react-bootstrap/Nav'
-
-//Importando o Link
-import { Link } from 'react-router-dom';
-
-//Importando o Navigate
-import { useNavigate } from 'react-router-dom';
-
-//Importar a NavBar
-import NaveBar from '../components/NaveBar';
-
-//Importando o CSS da página
-import style from './CadProdutos.module.css'
 
 //Importando a URL do server
 const url = "http://localhost:5000/produtos"
 
-const CadProdutos = () => {
-    //Variaveis pro usuario
+const ModalCadastrarProduto = (props) => {
     //Variaveis pro produto
     const [nome, setNome] = useState("")
     const [categoria, setCategoria] = useState("")
     const [preco, setPreco] = useState("")
-    
-    //Variaveis pro Alerta
-    const [alertaClass, setAlertaClass] = useState("mb-3 d-none")
-    const [alertaMensagem, setAlertaMensagem] = useState("")
 
-    //
-    const navigate = useNavigate()
-
-    //Criando o método para cadastrar o produto
-    const handleSubmit = async (e) => {
-      e.preventDefault()
-
-      if( !nome == "" ) {
-        if( !preco == "" ) {
-            
-            console.log("Entrei")
+    const handleCadastrar = async () => {
+        if( nome != "" && categoria != "" && preco != ""){
             const product = {nome, categoria, preco}
             const res = await fetch(url, {
               method: "POST",
@@ -63,25 +31,30 @@ const CadProdutos = () => {
             setNome("")
             setCategoria("")
             setPreco("")
-            // navigate("/produtos")
+            props.onHide()
         } else {
-          setAlertaClass("mb-3")
-          setAlertaMensagem("O campo preço não pode ser vazio")
+            alert("Cadastrado com sucesso")
         }
-      } else {
-        setAlertaClass("mb-3")
-        setAlertaMensagem("O campo nome não pode ser vazio")
-      }
     }
-
+    
   return (
-    // <div>CadProdutos</div>
-    <div className={style.fundoPagina}>
-        <NaveBar />
-        <Container style={{padding: 20}}>
-        <span class="material-symbols-outlined" style={{ fontSize: "100px"}}>inventory</span>
-            <form onSubmit={handleSubmit}>
-            {/* caixinha do nome */}
+    // <div>ModalCadastrar</div>
+    <div>
+        <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Cadastrar produto
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {/* <h4>Centered Modal</h4> */}
+        <Container style={{padding: 20, backgroundColor: "#90ee90", borderRadius: "10px"}}>
+        {/* caixinha do nome */}
         <FloatingLabel
         controlId="floatingInputName"
         label="Nome"
@@ -111,20 +84,15 @@ const CadProdutos = () => {
           </Form.Select>
         </Form.Group>
 
-      
-
-      {/* Alerta do erro */}
-      <Alert key="danger" variant="danger" className={alertaClass}>
-          {alertaMensagem}
-        </Alert>
-
-        <Button variant="primary" type='submit'>Cadastrar</Button>
-
-        </form>
 
       </Container>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={handleCadastrar}>Cadastrar</Button>
+      </Modal.Footer>
+    </Modal>
     </div>
   )
 }
 
-export default CadProdutos
+export default ModalCadastrarProduto

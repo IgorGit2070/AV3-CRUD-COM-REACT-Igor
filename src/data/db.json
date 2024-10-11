@@ -1,19 +1,37 @@
 {
-    "usuarios": [
-      {
-        "id": "1",
-        "nome": "principal",
-        "email": "principal@gmail.com",
-        "senha": "1234",
-        "tipo": "Administrador"
-      }
-    ],
-    "produtos": [
-        {
-            "id": "1",
-            "nome": "Arroz",
-            "categoria": "Perecível",
-            "preco": "27,98"
-        }
-    ]
-  }
+  "usuarios": [
+    {
+      "id": "1",
+      "nome": "admin",
+      "email": "admin@gmail.com",
+      "senha": "4321",
+      "tipo": "Administrador"
+    }
+  ],
+  "produtos": [
+    {
+      "id": "1",
+      "nome": "Arroz",
+      "categoria": "Perecível",
+      "preco": "27,98"
+    },
+    {
+      "id": "2",
+      "nome": "Feijão",
+      "categoria": "Perecível",
+      "preco": "7,98"
+    },
+    {
+      "id": "5315",
+      "nome": "Leite",
+      "categoria": "Frios e laticícios",
+      "preco": "17,98"
+    },
+    {
+      "id": "fa1e",
+      "nome": "Iogurte",
+      "categoria": "Frios e laticícios",
+      "preco": "19,98"
+    }
+  ]
+}
